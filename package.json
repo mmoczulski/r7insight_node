@@ -40,7 +40,8 @@
   "dependencies": {
     "json-stringify-safe": "^5.0.1",
     "lodash": "^4.17.15",
-    "reconnect-core": "^1.3.0"
+    "reconnect-core": "^1.3.0",
+    "triple-beam": "1.3.0"
   },
   "peerDependencies": {
     "winston": "3.x",

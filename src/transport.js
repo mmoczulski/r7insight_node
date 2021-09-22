@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const {MESSAGE} = require('triple-beam');
 
 const Logger = require('./logger');
 const stringify = require('json-stringify-safe');
@@ -30,6 +31,7 @@ function generateTransport(winston, winstonTransport) {
     constructor(opts) {
       super(opts);
       this.json = !!opts.json;
+      this.format = opts.format;
 
       const transportOpts = _.clone(opts || {});
 
@@ -112,8 +114,11 @@ function generateTransport(winston, winstonTransport) {
           ...returnMetadata(info),
         });
       } else if (Object.keys(info).length > 2) {
-        //  If we are not outputting to JSON and have metadata, we use the same format as Winston
-        const message = `${info.level}: ${info.message} ${stringify(returnMetadata(info))}`;
+        const message = this.format
+          // format message if custom formatter is provided
+          ? (this.format.transform(info, this.format.options))[MESSAGE]
+          //  If we are not outputting to JSON and have metadata, we use the same format as Winston
+          : `${info.level}: ${info.message} ${stringify(returnMetadata(info))}`;
 
         this.logger.log(message);
       } else {
