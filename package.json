@@ -1,5 +1,5 @@
 {
-  "name": "r7insight_node",
+  "name": "@healthadvisor/r7insight_node",
   "version": "3.3.0",
   "description": "Rapid7 Insight Platform client for node; use with or without Winston or Bunyan.",
   "keywords": [
@@ -27,6 +27,11 @@
     "url": "https://github.com/rapid7/r7insight_node.git"
   },
   "main": "src/index.js",
+  "files": [
+    "src",
+    "index.d.ts",
+    "LICENSE.txt"
+  ],
   "types": "index.d.ts",
   "scripts": {
     "lint": "eslint src",
